@@ -1,23 +1,24 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+import "./style.css";
+import { setupAlarm, currentTime } from "./alarm.js";
 
-document.querySelector('#app').innerHTML = `
+document.querySelector("#app").innerHTML = `
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+    <div id='current-time'></div> 
+    <form id='alarm-form'>
+      <input id='user-alarm' name='alarm' type='time' placeholder='setup alarm' />
+      <button type='submit'>⏰</button>
   </div>
-`
+`;
 
-setupCounter(document.querySelector('#counter'))
+document.getElementById("alarm-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const timeFromUser = document.getElementById("user-alarm").value;
+  setupAlarm(timeFromUser);
+});
+
+function renderClock() {
+  const clock = document.getElementById("current-time");
+  currentTime(clock);
+}
+
+setInterval(renderClock, 1000);
