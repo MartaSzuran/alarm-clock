@@ -1,5 +1,10 @@
 import "./style.css";
-import { timeInputFromUser, alarms } from "./alarm.js";
+import {
+  timeInputFromUser,
+  alarms,
+  ifAlarmsListHasChanged,
+  isTimeInputValid,
+} from "./alarm.js";
 import { currentTime, castomClock } from "./clock.js";
 
 document.querySelector("#app").innerHTML = `
@@ -9,6 +14,7 @@ document.querySelector("#app").innerHTML = `
       <input id='user-alarm' name='alarm' type='time' />
       <button type='submit'>New Alarm</button>
     <form>
+    <div id='showWentInvalidInput'></div>
     <div id='alarms'></div>
   </div>
 `;
@@ -16,6 +22,7 @@ document.querySelector("#app").innerHTML = `
 function renderClock() {
   const clock = document.getElementById("clock");
   currentTime(clock);
+  checkIfAlarmsListHasChanged();
 }
 
 setInterval(renderClock, 1000);
@@ -25,6 +32,7 @@ document.getElementById("alarm-form").addEventListener("submit", (event) => {
   const timeFromUser = document.getElementById("user-alarm").value;
   if (timeFromUser) {
     timeInputFromUser(timeFromUser);
+    checkIfIsValidTimeInput();
     clearInput();
   }
   createAlarmsList();
@@ -41,11 +49,26 @@ function createAlarmsList() {
     alarmsList.removeChild(alarmsList.lastChild);
   }
   alarms.forEach((alarm) => {
-    console.log(alarm);
     const alarmDiv = document.createElement("div");
     alarmDiv.innerHTML = `⏰ Alarm setup at : ${castomClock(
       alarm.alarmTime.getHours()
-    )} : ${castomClock(alarm.alarmTime.getMinutes())}`;
+    )} : ${castomClock(alarm.alarmTime.getMinutes())} : ${castomClock(
+      alarm.alarmTime.getSeconds()
+    )}`;
     alarmsList.append(alarmDiv);
   });
+}
+
+function checkIfAlarmsListHasChanged() {
+  if (ifAlarmsListHasChanged) {
+    createAlarmsList();
+  }
+}
+
+function checkIfIsValidTimeInput() {
+  if (!isTimeInputValid) {
+    const info = document.getElementById("showWentInvalidInput");
+    info.innerText = "You have to set time in the future!";
+    setTimeout(() => (info.innerText = ""), 3000);
+  }
 }
