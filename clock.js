@@ -3,7 +3,7 @@ export function currentTime(element) {
   let currentHours = setupTime.getHours();
   let currentMinutes = setupTime.getMinutes();
   let currentSeconds = setupTime.getSeconds();
-  element.innerHTML = `Current Time: ${castomClock(
+  element.innerHTML = `Current Time:   ${castomClock(
     currentHours
   )} : ${castomClock(currentMinutes)} : ${castomClock(currentSeconds)}`;
 }

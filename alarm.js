@@ -5,7 +5,7 @@ let audio = new Audio("/sounds/alarm.mp3");
 let id = 1;
 
 export let ifAlarmsListHasChanged = false;
-export let isTimeInputValid = true;
+export let isTimeInputValid = false;
 
 export function timeInputFromUser(timeFromUser) {
   let hourAndMinutesFromInput = timeFromUser.split(":");
@@ -27,7 +27,7 @@ export function timeInputFromUser(timeFromUser) {
     currentSeconds * 1000;
 
   if (diff < 0) {
-    return (isTimeInputValid = false);
+    return (isTimeInputValid = true);
   }
 
   let alarmTime = new Date();

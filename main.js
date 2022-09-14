@@ -14,9 +14,9 @@ document.querySelector("#app").innerHTML = `
     <form id='alarm-form' class='user-input'>
       <input id='user-alarm' name='alarm' type='time' />
       <button type='submit'>New Alarm</button>
-    <form>
-    <div id='showWentInvalidInput'></div>
-    <div id='alarms'></div>
+    </form>
+    <div id='showWhenIsInvalidInput' class="worning"></div>
+    <div id='alarms' class="alarms"></div>
   </div>
 `;
 
@@ -51,11 +51,9 @@ function createAlarmsList() {
   }
   alarms.forEach((alarm) => {
     const alarmDiv = document.createElement("div");
-    alarmDiv.innerHTML = `⏰ Alarm setup at : ${castomClock(
+    alarmDiv.innerHTML = `⌚ Alarm setup at : ${castomClock(
       alarm.alarmTime.getHours()
-    )} : ${castomClock(alarm.alarmTime.getMinutes())} : ${castomClock(
-      alarm.alarmTime.getSeconds()
-    )}`;
+    )} : ${castomClock(alarm.alarmTime.getMinutes())} `;
     alarmsList.append(alarmDiv);
   });
 }
@@ -67,9 +65,9 @@ function checkIfAlarmsListHasChanged() {
 }
 
 function checkIfIsValidTimeInput() {
-  if (!isTimeInputValid) {
-    const info = document.getElementById("showWentInvalidInput");
+  if (isTimeInputValid) {
+    const info = document.getElementById("showWhenIsInvalidInput");
     info.innerText = "You have to set time in the future!";
-    setTimeout(() => (info.innerText = ""), 3000);
+    setTimeout(() => (info.innerText = ""), 2000);
   }
 }
