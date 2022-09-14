@@ -8,9 +8,10 @@ import {
 import { currentTime, castomClock } from "./clock.js";
 
 document.querySelector("#app").innerHTML = `
-  <div>
-    <div id='clock'></div> 
-    <form id='alarm-form'>
+  <div class="container">
+    <img src="./public/images/clock.jpg" alt="clock" class='clock-image'/>
+    <div id='clock' class="clock"></div> 
+    <form id='alarm-form' class='user-input'>
       <input id='user-alarm' name='alarm' type='time' />
       <button type='submit'>New Alarm</button>
     <form>
