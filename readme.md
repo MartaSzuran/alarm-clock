@@ -1,6 +1,6 @@
 # Alarm Clock
 
-(./alarm-clock.jpg)
+![alarm-clock screenshot](./alarm-clock.png)
 
 ## Technologies
 
