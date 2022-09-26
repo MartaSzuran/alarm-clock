@@ -1,7 +1,7 @@
 # Alarm Clock
 
 ![alarm-clock screenshot](./alarm-clock.png)
-[Live](https://resplendent-kitsune-ed844d.netlify.app)
+[Live](https://alarm-clock-vanilla-js.netlify.app/)
 
 ## Technologies
 
