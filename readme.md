@@ -13,9 +13,9 @@
 ### The challenge
 
 - structuring & Designing the page
-  — take an input from user to set time for alarm
-  — use Date object
-  — play a sound when the the user’s time is over
+- take an input from user to set time for alarm
+- use Date object
+- play a sound when the the user’s time is over
 
 ### What I have learned was how to:
 
